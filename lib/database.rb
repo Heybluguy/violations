@@ -1,5 +1,14 @@
 
+class Database
+  def initialize(csv)
+    @violations = recieve_violations(csv)
 
-  csv = File.open("Violations-2012.csv", "r")
-    csv_read = csv.readlines
-    csv.close
+  end
+  def recieve_violations(csv)
+    csv_file = File.open(csv, "r")
+      csv_read = csv_file.readlines
+      csv_file.close
+      @violations << csv_read
+      @violations = @violations.flatten drop(1)
+  end
+end
